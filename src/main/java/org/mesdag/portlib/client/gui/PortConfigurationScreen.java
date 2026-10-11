@@ -18,6 +18,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.config.ConfigTracker;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 import org.jetbrains.annotations.NotNull;
 import org.mesdag.portlib.wrapper.common.PortTranslatableEnum;
 import org.mesdag.portlib.wrapper.common.extensions.IPortConfigValueExtension;
@@ -233,7 +234,12 @@ public class PortConfigurationScreen extends Screen {
 
         @Override
         public void onClose() {
-            if (parent instanceof PortConfigurationScreen && history.dirty) modConfig.save();
+            if (parent instanceof PortConfigurationScreen && history.dirty) {
+                modConfig.save();
+                forgeSpec.afterReload();
+                history.dirty = false;
+                mod.dispatchConfigEvent(new ModConfigEvent.Reloading(modConfig));
+            }
             minecraft.setScreen(parent);
         }
 
