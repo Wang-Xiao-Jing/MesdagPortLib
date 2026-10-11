@@ -1,5 +1,7 @@
 package org.mesdag.portlib.diff.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.network.protocol.game.ClientboundLevelChunkWithLightPacket;
 import net.minecraft.server.level.ChunkMap;
 import net.minecraft.server.level.ServerPlayer;
@@ -9,13 +11,18 @@ import org.mesdag.portlib.event.PortEventHooks;
 import org.mesdag.portlib.wrapper.common.extensions.IPortChunkMapExtension;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ChunkMap.class)
 public abstract class ChunkMapMixin implements IPortChunkMapExtension {
-    @Inject(method = "playerLoadedChunk", at = @At(value = "INVOKE", target = "Lnet/minecraft/network/protocol/game/DebugPackets;sendPoiPacketsForChunk(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/ChunkPos;)V", shift = At.Shift.AFTER))
-    private void fireChunkSent(ServerPlayer player, MutableObject<ClientboundLevelChunkWithLightPacket> packetCache, LevelChunk chunk, CallbackInfo ci) {
+    // 不用这个方式是因为沉浸式传送门硬崩溃该方法
+//    @Inject(method = "playerLoadedChunk", at = @At(value = "INVOKE", target = "Lnet/minecraft/network/protocol/game/DebugPackets;sendPoiPacketsForChunk(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/ChunkPos;)V", shift = At.Shift.AFTER))
+//    private void fireChunkSent(ServerPlayer player, MutableObject<ClientboundLevelChunkWithLightPacket> packetCache, LevelChunk chunk, CallbackInfo ci) {
+//        PortEventHooks.fireChunkSent(player, chunk, player.serverLevel());
+//    }
+
+    @WrapOperation(method = {"lambda$prepareTickingChunk$44", "updateChunkTracking"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ChunkMap;playerLoadedChunk(Lnet/minecraft/server/level/ServerPlayer;Lorg/apache/commons/lang3/mutable/MutableObject;Lnet/minecraft/world/level/chunk/LevelChunk;)V"))
+    private void fireChunkSent(ChunkMap instance, ServerPlayer player, MutableObject<ClientboundLevelChunkWithLightPacket> packetCache, LevelChunk chunk, Operation<Void> original) {
+        original.call(instance, player, packetCache, chunk);
         PortEventHooks.fireChunkSent(player, chunk, player.serverLevel());
     }
 }
