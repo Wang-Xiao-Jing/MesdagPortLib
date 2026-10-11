@@ -20,8 +20,14 @@ public abstract class ChunkMapMixin implements IPortChunkMapExtension {
 //        PortEventHooks.fireChunkSent(player, chunk, player.serverLevel());
 //    }
 
-    @WrapOperation(method = {"lambda$prepareTickingChunk$44", "updateChunkTracking"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ChunkMap;playerLoadedChunk(Lnet/minecraft/server/level/ServerPlayer;Lorg/apache/commons/lang3/mutable/MutableObject;Lnet/minecraft/world/level/chunk/LevelChunk;)V"))
-    private void fireChunkSent(ChunkMap instance, ServerPlayer player, MutableObject<ClientboundLevelChunkWithLightPacket> packetCache, LevelChunk chunk, Operation<Void> original) {
+    @WrapOperation(method = "updateChunkTracking", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ChunkMap;playerLoadedChunk(Lnet/minecraft/server/level/ServerPlayer;Lorg/apache/commons/lang3/mutable/MutableObject;Lnet/minecraft/world/level/chunk/LevelChunk;)V"))
+    private void fireChunkSent1(ChunkMap instance, ServerPlayer player, MutableObject<ClientboundLevelChunkWithLightPacket> packetCache, LevelChunk chunk, Operation<Void> original) {
+        original.call(instance, player, packetCache, chunk);
+        PortEventHooks.fireChunkSent(player, chunk, player.serverLevel());
+    }
+
+    @WrapOperation(method = "lambda$prepareTickingChunk$44", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ChunkMap;playerLoadedChunk(Lnet/minecraft/server/level/ServerPlayer;Lorg/apache/commons/lang3/mutable/MutableObject;Lnet/minecraft/world/level/chunk/LevelChunk;)V", remap = true), remap = false)
+    private void fireChunkSent2(ChunkMap instance, ServerPlayer player, MutableObject<ClientboundLevelChunkWithLightPacket> packetCache, LevelChunk chunk, Operation<Void> original) {
         original.call(instance, player, packetCache, chunk);
         PortEventHooks.fireChunkSent(player, chunk, player.serverLevel());
     }
