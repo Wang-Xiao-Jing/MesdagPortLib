@@ -158,7 +158,9 @@ public abstract class LivingEntityMixin implements IPortLivingEntity, PortSelfGe
 
     @Inject(method = "hurt", at = @At(value = "RETURN", ordinal = 5))
     private void popEarly(CallbackInfoReturnable<Boolean> cir) {
-        portlib$damageContainers.pop();
+        if (!portlib$damageContainers.isEmpty()) {
+            portlib$damageContainers.pop();
+        }
     }
 
     @Inject(method = "hurt", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;actuallyHurt(Lnet/minecraft/world/damagesource/DamageSource;F)V", ordinal = 0))
