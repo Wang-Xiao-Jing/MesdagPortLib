@@ -11,11 +11,6 @@ plugins {
 version = mod_version
 group = mod_group_id
 
-repositories {
-    mavenLocal()
-    mavenCentral()
-}
-
 base {
     archivesName = "MesdagPortLib+neoforge1.21.1 to forge1.20.1"
 }
@@ -109,6 +104,27 @@ obfuscation {
     createRemappingConfiguration(configurations.localRuntime)
 }
 
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        // location of the maven that hosts JEI files since January 2023
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+    }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+    }
+    maven {
+        url = "https://www.cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+}
+
 boolean slim = true
 
 dependencies {
@@ -119,6 +135,10 @@ dependencies {
         implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.5.3"))
     }
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
+//    modRuntimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+//    modRuntimeOnly("curse.maven:sophisticated-backpacks-422301:9154766")
+//    modRuntimeOnly("curse.maven:sophisticated-core-618298:9151366")
 }
 
 jar {

@@ -37,11 +37,7 @@ public class PortCustomRegistration<R> extends PortRegistration<R> {
     }
 
     public void register(ResourceLocation key, R value) {
-        ForgeRegistry<R> forgeRegistry = (ForgeRegistry<R>) registry.get();
-        boolean locked = forgeRegistry.isLocked();
-        if (locked) forgeRegistry.unfreeze();
-        forgeRegistry.register(key, value);
-        if (locked) forgeRegistry.freeze();
+        modifyForgeRegistry((ForgeRegistry<R>) registry.get(), registry -> registry.register(key, value));
     }
 
     public @Nullable ResourceLocation getKey(R value) {

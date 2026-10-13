@@ -12,9 +12,12 @@ import net.minecraftforge.registries.RegistryManager;
 import net.minecraftforge.registries.RegistryObject;
 import org.mesdag.portlib.diff.IPortMappedRegistry;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 @SuppressWarnings("UnstableApiUsage")
@@ -64,11 +67,7 @@ public class PortRegistration<R> {
     }
 
     public void addAlias(ResourceLocation from, ResourceLocation to) {
-        ForgeRegistry<R> forgeRegistry = RegistryManager.ACTIVE.getRegistry(registryKey);
-        boolean locked = forgeRegistry.isLocked();
-        if (locked) forgeRegistry.unfreeze();
-        forgeRegistry.addAlias(from, to);
-        if (locked) forgeRegistry.freeze();
+        modifyForgeRegistry(RegistryManager.ACTIVE.getRegistry(registryKey), registry -> registry.addAlias(from, to));
 
         Registry<?> vanillaRegistry = BuiltInRegistries.REGISTRY.get(registryKey.location());
         if (vanillaRegistry instanceof IPortMappedRegistry<?> port) {
@@ -79,5 +78,53 @@ public class PortRegistration<R> {
     @SuppressWarnings("unchecked")
     public <T extends R> List<PortRegistryEntry<R, T>> getEntries() {
         return (List<PortRegistryEntry<R, T>>) (List<?>) entries;
+    }
+
+    private static boolean reflected;
+    private static boolean skip;
+    private static Object wrapper;
+    private static Field lockedF;
+
+    static <R> void modifyForgeRegistry(ForgeRegistry<R> registry, Consumer<ForgeRegistry<R>> todo) {
+        if (!reflected) {
+            try {
+                Method getWrapperM = registry.getClass().getDeclaredMethod("getWrapper");
+                getWrapperM.setAccessible(true);
+                wrapper = getWrapperM.invoke(registry);
+                if (wrapper == null) {
+                    skip = true;
+                } else {
+                    try {
+                        lockedF = wrapper.getClass().getSuperclass().getDeclaredField("locked");
+                    } catch (Throwable e) {
+                        lockedF = wrapper.getClass().getDeclaredField("locked");
+                    }
+                    lockedF.setAccessible(true);
+                }
+            } catch (Throwable ignored) {
+                skip = true;
+            } finally {
+                reflected = true;
+            }
+        }
+        boolean wrapperLocked = false;
+        if (!skip) {
+            try {
+                wrapperLocked = (Boolean) lockedF.get(wrapper);
+            } catch (Throwable ignored) {
+                skip = true;
+            }
+        }
+        boolean locked = registry.isLocked();
+        if (locked) registry.unfreeze();
+        todo.accept(registry);
+        if (locked) registry.freeze();
+        if (!skip) {
+            try {
+                lockedF.set(wrapper, wrapperLocked);
+            } catch (Throwable ignored) {
+                skip = true;
+            }
+        }
     }
 }
