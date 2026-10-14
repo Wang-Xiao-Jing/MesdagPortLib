@@ -5,6 +5,7 @@ import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.multiplayer.ClientRegistryLayer;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.RegistryLayer;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.fml.loading.LoadingModList;
@@ -39,16 +40,11 @@ public class PortEnvironment {
 
     public static RegistryAccess registryAccess() {
         MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
-        if (server == null) {
-            if (isPhysicalClient()) {
-                ClientPacketListener connection = Minecraft.getInstance().getConnection();
-                if (connection != null) {
-                    return connection.registryAccess();
-                }
-                return ClientRegistryLayer.createRegistryAccess().compositeAccess();
-            }
+        if (server == null && isPhysicalClient()) {
+            ClientPacketListener connection = Minecraft.getInstance().getConnection();
+            return connection == null ? ClientRegistryLayer.STATIC_ACCESS : connection.registryAccess();
         }
-        return server == null ? RegistryAccess.EMPTY : server.registryAccess();
+        return server == null ? RegistryLayer.STATIC_ACCESS : server.registryAccess();
     }
 
     /// 可于游戏加载早期阶段判断
