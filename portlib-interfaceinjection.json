@@ -119,6 +119,9 @@
     "net/minecraft/world/damagesource/DamageSource": [
         "org/mesdag/portlib/wrapper/common/extensions/IPortDamageSourceExtension"
     ],
+    "net/minecraft/client/renderer/texture/SpriteContents": [
+        "org/mesdag/portlib/wrapper/common/extensions/IPortSpriteContentsExtension"
+    ],
     "net/minecraft/client/renderer/texture/TextureAtlas": [
         "org/mesdag/portlib/wrapper/common/extensions/IPortTextureAtlasExtension"
     ],

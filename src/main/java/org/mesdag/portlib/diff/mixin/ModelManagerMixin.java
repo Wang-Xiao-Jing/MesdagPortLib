@@ -30,6 +30,7 @@ public abstract class ModelManagerMixin {
     @ModifyArg(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/resources/model/AtlasSet;<init>(Ljava/util/Map;Lnet/minecraft/client/renderer/texture/TextureManager;)V"))
     private Map<ResourceLocation, ResourceLocation> gatherMaterialAtlases(Map<ResourceLocation, ResourceLocation> atlasMap) {
         var event = new PortRegisterMaterialAtlasesEvent(atlasMap);
+        event.register(PortModelManager.GUI_ATLAS, PortModelManager.GUI_ATLAS_INFO);
         PortEventHandler.postEvent(event);
         return event.getAtlases();
     }
