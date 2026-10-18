@@ -42,13 +42,13 @@ public class PortItemTagsProvider extends ItemTagsProvider {
     @SuppressWarnings("unchecked")
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        tag(Tags.Items.TOOLS_SHIELDS, PortTags.Items.TOOLS_SHIELD).add(Items.SHIELD);
-        tag(Tags.Items.TOOLS_BOWS, PortTags.Items.TOOLS_BOW).add(Items.BOW);
+        tag(PortTags.Items.TOOLS_SHIELD).add(Items.SHIELD);
+        tag(PortTags.Items.TOOLS_BOW).add(Items.BOW);
         tag(PortTags.Items.TOOLS_BRUSH).add(Items.BRUSH);
-        tag(Tags.Items.TOOLS_CROSSBOWS, PortTags.Items.TOOLS_CROSSBOW).add(Items.CROSSBOW);
-        tag(Tags.Items.TOOLS_FISHING_RODS, PortTags.Items.TOOLS_FISHING_ROD).add(Items.FISHING_ROD);
+        tag(PortTags.Items.TOOLS_CROSSBOW).add(Items.CROSSBOW);
+        tag(PortTags.Items.TOOLS_FISHING_ROD).add(Items.FISHING_ROD);
         tag(PortTags.Items.TOOLS_SHEAR).add(Items.SHEARS);
-        tag(Tags.Items.TOOLS_TRIDENTS, PortTags.Items.TOOLS_SPEAR).add(Items.TRIDENT);
+        tag(PortTags.Items.TOOLS_SPEAR).add(Items.TRIDENT);
         tag(PortTags.Items.TOOLS_IGNITER).add(Items.FLINT_AND_STEEL);
         tag(PortTags.Items.TOOLS_WRENCH);
         tag(PortTags.Items.MINING_TOOL_TOOLS).add(Items.WOODEN_PICKAXE, Items.STONE_PICKAXE, Items.GOLDEN_PICKAXE, Items.IRON_PICKAXE, Items.DIAMOND_PICKAXE, Items.NETHERITE_PICKAXE);
@@ -57,7 +57,7 @@ public class PortItemTagsProvider extends ItemTagsProvider {
                 Items.WOODEN_SWORD, Items.STONE_SWORD, Items.GOLDEN_SWORD, Items.IRON_SWORD, Items.DIAMOND_SWORD, Items.NETHERITE_SWORD,
                 Items.WOODEN_AXE, Items.STONE_AXE, Items.GOLDEN_AXE, Items.IRON_AXE, Items.DIAMOND_AXE, Items.NETHERITE_AXE);
         tag(PortTags.Items.RANGED_WEAPON_TOOLS).add(Items.BOW, Items.CROSSBOW, Items.TRIDENT);
-        tag(Tags.Items.TOOLS, PortTags.Items.TOOLS)
+        tag(PortTags.Items.TOOLS)
                 .addTags(ItemTags.AXES, ItemTags.HOES, ItemTags.PICKAXES, ItemTags.SHOVELS, ItemTags.SWORDS)
                 .addTags(PortTags.Items.TOOLS_BOW, PortTags.Items.TOOLS_BRUSH, PortTags.Items.TOOLS_CROSSBOW, PortTags.Items.TOOLS_FISHING_ROD,
                         PortTags.Items.TOOLS_IGNITER, PortTags.Items.TOOLS_SHEAR, PortTags.Items.TOOLS_SHIELD, PortTags.Items.TOOLS_SPEAR,
@@ -96,14 +96,14 @@ public class PortItemTagsProvider extends ItemTagsProvider {
                 Items.NETHERITE_HELMET,
                 Items.TURTLE_HELMET
         );
-        tag(Tags.Items.ARMORS, PortTags.Items.ARMORS).addTags(PortTags.Items.HEAD_ARMOR, PortTags.Items.CHEST_ARMOR, PortTags.Items.LEG_ARMOR, PortTags.Items.FOOT_ARMOR);
+        tag(PortTags.Items.ARMORS).addTags(PortTags.Items.HEAD_ARMOR, PortTags.Items.CHEST_ARMOR, PortTags.Items.LEG_ARMOR, PortTags.Items.FOOT_ARMOR);
 
-        tag(Tags.Items.SEEDS, PortTags.Items.SEEDS).addTags(Tags.Items.SEEDS_BEETROOT, Tags.Items.SEEDS_MELON, Tags.Items.SEEDS_PUMPKIN, PortTags.Items.SEEDS_TORCHFLOWER, Tags.Items.SEEDS_WHEAT);
-        tag(Tags.Items.SEEDS_BEETROOT, PortTags.Items.SEEDS_BEETROOT).add(Items.BEETROOT_SEEDS);
-        tag(Tags.Items.SEEDS_MELON, PortTags.Items.SEEDS_MELON).add(Items.MELON_SEEDS);
-        tag(Tags.Items.SEEDS_PUMPKIN, PortTags.Items.SEEDS_PUMPKIN).add(Items.PUMPKIN_SEEDS);
+        tag(PortTags.Items.SEEDS).addTags(Tags.Items.SEEDS_BEETROOT, Tags.Items.SEEDS_MELON, Tags.Items.SEEDS_PUMPKIN, PortTags.Items.SEEDS_TORCHFLOWER, Tags.Items.SEEDS_WHEAT);
+        tag(PortTags.Items.SEEDS_BEETROOT).add(Items.BEETROOT_SEEDS);
+        tag(PortTags.Items.SEEDS_MELON).add(Items.MELON_SEEDS);
+        tag(PortTags.Items.SEEDS_PUMPKIN).add(Items.PUMPKIN_SEEDS);
         tag(PortTags.Items.SEEDS_TORCHFLOWER).add(Items.TORCHFLOWER_SEEDS);
-        tag(Tags.Items.SEEDS_WHEAT, PortTags.Items.SEEDS_WHEAT).add(Items.WHEAT_SEEDS);
+        tag(PortTags.Items.SEEDS_WHEAT).add(Items.WHEAT_SEEDS);
 
         copy(PortTags.Blocks.GLASS_BLOCKS, PortTags.Items.GLASS_BLOCKS);
         copy(PortTags.Blocks.GLASS_BLOCKS_COLORLESS, PortTags.Items.GLASS_BLOCKS_COLORLESS);
@@ -181,7 +181,7 @@ public class PortItemTagsProvider extends ItemTagsProvider {
         copy(PortTags.Blocks.SANDS_COLORLESS, PortTags.Items.SANDS_COLORLESS);
         copy(PortTags.Blocks.SANDS_RED, PortTags.Items.SANDS_RED);
 
-        tag(Tags.Items.BONES, PortTags.Items.BONES).add(Items.BONE);
+        tag(PortTags.Items.BONES).add(Items.BONE);
 
         tag(PortTags.Items.BRICKS).addTags(PortTags.Items.BRICKS_NORMAL, PortTags.Items.BRICKS_NETHER);
         tag(PortTags.Items.BRICKS_NORMAL).add(Items.BRICK);
@@ -202,25 +202,25 @@ public class PortItemTagsProvider extends ItemTagsProvider {
         copy(PortTags.Blocks.CHESTS_TRAPPED, PortTags.Items.CHESTS_TRAPPED);
         copy(PortTags.Blocks.CHESTS_WOODEN, PortTags.Items.CHESTS_WOODEN);
 
-        tag(Tags.Items.CROPS, PortTags.Items.CROPS).addTags(
+        tag(PortTags.Items.CROPS).addTags(
                 PortTags.Items.CROPS_BEETROOT, PortTags.Items.CROPS_CACTUS, PortTags.Items.CROPS_CARROT,
                 PortTags.Items.CROPS_COCOA_BEAN, PortTags.Items.CROPS_MELON, PortTags.Items.CROPS_NETHER_WART,
                 PortTags.Items.CROPS_POTATO, PortTags.Items.CROPS_PUMPKIN, PortTags.Items.CROPS_SUGAR_CANE,
                 PortTags.Items.CROPS_WHEAT);
-        tag(Tags.Items.CROPS_BEETROOT, PortTags.Items.CROPS_BEETROOT).add(Items.BEETROOT);
+        tag(PortTags.Items.CROPS_BEETROOT).add(Items.BEETROOT);
         tag(PortTags.Items.CROPS_CACTUS).add(Items.CACTUS);
-        tag(Tags.Items.CROPS_CARROT, PortTags.Items.CROPS_CARROT).add(Items.CARROT);
+        tag(PortTags.Items.CROPS_CARROT).add(Items.CARROT);
         tag(PortTags.Items.CROPS_COCOA_BEAN).add(Items.COCOA_BEANS);
         tag(PortTags.Items.CROPS_MELON).add(Items.MELON);
-        tag(Tags.Items.CROPS_NETHER_WART, PortTags.Items.CROPS_NETHER_WART).add(Items.NETHER_WART);
-        tag(Tags.Items.CROPS_POTATO, PortTags.Items.CROPS_POTATO).add(Items.POTATO);
+        tag(PortTags.Items.CROPS_NETHER_WART).add(Items.NETHER_WART);
+        tag(PortTags.Items.CROPS_POTATO).add(Items.POTATO);
         tag(PortTags.Items.CROPS_PUMPKIN).add(Items.PUMPKIN);
         tag(PortTags.Items.CROPS_SUGAR_CANE).add(Items.SUGAR_CANE);
-        tag(Tags.Items.CROPS_WHEAT, PortTags.Items.CROPS_WHEAT).add(Items.WHEAT);
+        tag(PortTags.Items.CROPS_WHEAT).add(Items.WHEAT);
 
-        tag(Tags.Items.DUSTS, PortTags.Items.DUSTS).addTags(Tags.Items.DUSTS_GLOWSTONE, Tags.Items.DUSTS_REDSTONE);
-        tag(Tags.Items.DUSTS_GLOWSTONE, PortTags.Items.DUSTS_GLOWSTONE).add(Items.GLOWSTONE_DUST);
-        tag(Tags.Items.DUSTS_REDSTONE, PortTags.Items.DUSTS_REDSTONE).add(Items.REDSTONE);
+        tag(PortTags.Items.DUSTS).addTags(Tags.Items.DUSTS_GLOWSTONE, Tags.Items.DUSTS_REDSTONE);
+        tag(PortTags.Items.DUSTS_GLOWSTONE).add(Items.GLOWSTONE_DUST);
+        tag(PortTags.Items.DUSTS_REDSTONE).add(Items.REDSTONE);
 
         IntrinsicTagAppender<Item> dyed = tag(PortTags.Items.DYED);
         for (DyeColor color : DyeColor.values()) {
@@ -243,25 +243,25 @@ public class PortItemTagsProvider extends ItemTagsProvider {
 
         copy(PortTags.Blocks.CHAINS, PortTags.Items.CHAINS);
 
-        tag(Tags.Items.GEMS, PortTags.Items.GEMS).addTags(PortTags.Items.GEMS_AMETHYST, PortTags.Items.GEMS_DIAMOND, PortTags.Items.GEMS_EMERALD, PortTags.Items.GEMS_LAPIS, PortTags.Items.GEMS_PRISMARINE, PortTags.Items.GEMS_QUARTZ);
-        tag(Tags.Items.GEMS_AMETHYST, PortTags.Items.GEMS_AMETHYST).add(Items.AMETHYST_SHARD);
-        tag(Tags.Items.GEMS_DIAMOND, PortTags.Items.GEMS_DIAMOND).add(Items.DIAMOND);
-        tag(Tags.Items.GEMS_EMERALD, PortTags.Items.GEMS_EMERALD).add(Items.EMERALD);
-        tag(Tags.Items.GEMS_LAPIS, PortTags.Items.GEMS_LAPIS).add(Items.LAPIS_LAZULI);
-        tag(Tags.Items.GEMS_PRISMARINE, PortTags.Items.GEMS_PRISMARINE).add(Items.PRISMARINE_CRYSTALS);
-        tag(Tags.Items.GEMS_QUARTZ, PortTags.Items.GEMS_QUARTZ).add(Items.QUARTZ);
+        tag(PortTags.Items.GEMS).addTags(PortTags.Items.GEMS_AMETHYST, PortTags.Items.GEMS_DIAMOND, PortTags.Items.GEMS_EMERALD, PortTags.Items.GEMS_LAPIS, PortTags.Items.GEMS_PRISMARINE, PortTags.Items.GEMS_QUARTZ);
+        tag(PortTags.Items.GEMS_AMETHYST).add(Items.AMETHYST_SHARD);
+        tag(PortTags.Items.GEMS_DIAMOND).add(Items.DIAMOND);
+        tag(PortTags.Items.GEMS_EMERALD).add(Items.EMERALD);
+        tag(PortTags.Items.GEMS_LAPIS).add(Items.LAPIS_LAZULI);
+        tag(PortTags.Items.GEMS_PRISMARINE).add(Items.PRISMARINE_CRYSTALS);
+        tag(PortTags.Items.GEMS_QUARTZ).add(Items.QUARTZ);
 
-        tag(Tags.Items.INGOTS, PortTags.Items.INGOTS).addTags(PortTags.Items.INGOTS_COPPER, PortTags.Items.INGOTS_GOLD, PortTags.Items.INGOTS_IRON, PortTags.Items.INGOTS_NETHERITE);
-        tag(Tags.Items.INGOTS_COPPER, PortTags.Items.INGOTS_COPPER).add(Items.COPPER_INGOT);
-        tag(Tags.Items.INGOTS_GOLD, PortTags.Items.INGOTS_GOLD).add(Items.GOLD_INGOT);
-        tag(Tags.Items.INGOTS_IRON, PortTags.Items.INGOTS_IRON).add(Items.IRON_INGOT);
-        tag(Tags.Items.INGOTS_NETHERITE, PortTags.Items.INGOTS_NETHERITE).add(Items.NETHERITE_INGOT);
+        tag(PortTags.Items.INGOTS).addTags(PortTags.Items.INGOTS_COPPER, PortTags.Items.INGOTS_GOLD, PortTags.Items.INGOTS_IRON, PortTags.Items.INGOTS_NETHERITE);
+        tag(PortTags.Items.INGOTS_COPPER).add(Items.COPPER_INGOT);
+        tag(PortTags.Items.INGOTS_GOLD).add(Items.GOLD_INGOT);
+        tag(PortTags.Items.INGOTS_IRON).add(Items.IRON_INGOT);
+        tag(PortTags.Items.INGOTS_NETHERITE).add(Items.NETHERITE_INGOT);
 
-        tag(Tags.Items.MUSHROOMS, PortTags.Items.MUSHROOMS).add(Items.BROWN_MUSHROOM, Items.RED_MUSHROOM);
+        tag(PortTags.Items.MUSHROOMS).add(Items.BROWN_MUSHROOM, Items.RED_MUSHROOM);
 
-        tag(Tags.Items.NUGGETS, PortTags.Items.NUGGETS).addTags(PortTags.Items.NUGGETS_GOLD, PortTags.Items.NUGGETS_IRON);
-        tag(Tags.Items.NUGGETS_IRON, PortTags.Items.NUGGETS_IRON).add(Items.IRON_NUGGET);
-        tag(Tags.Items.NUGGETS_GOLD, PortTags.Items.NUGGETS_GOLD).add(Items.GOLD_NUGGET);
+        tag(PortTags.Items.NUGGETS).addTags(PortTags.Items.NUGGETS_GOLD, PortTags.Items.NUGGETS_IRON);
+        tag(PortTags.Items.NUGGETS_IRON).add(Items.IRON_NUGGET);
+        tag(PortTags.Items.NUGGETS_GOLD).add(Items.GOLD_NUGGET);
 
         copy(PortTags.Blocks.ORE_BEARING_GROUND_DEEPSLATE, PortTags.Items.ORE_BEARING_GROUND_DEEPSLATE);
         copy(PortTags.Blocks.ORE_BEARING_GROUND_NETHERRACK, PortTags.Items.ORE_BEARING_GROUND_NETHERRACK);
@@ -290,10 +290,10 @@ public class PortItemTagsProvider extends ItemTagsProvider {
         tag(PortTags.Items.POTION_BOTTLE).add(Items.POTION, Items.SPLASH_POTION, Items.LINGERING_POTION);
         tag(PortTags.Items.POTIONS).addTags(PortTags.Items.POTION_BOTTLE);
 
-        tag(Tags.Items.RAW_MATERIALS, PortTags.Items.RAW_MATERIALS).addTags(PortTags.Items.RAW_MATERIALS_COPPER, PortTags.Items.RAW_MATERIALS_GOLD, PortTags.Items.RAW_MATERIALS_IRON);
-        tag(Tags.Items.RAW_MATERIALS_COPPER, PortTags.Items.RAW_MATERIALS_COPPER).add(Items.RAW_COPPER);
-        tag(Tags.Items.RAW_MATERIALS_GOLD, PortTags.Items.RAW_MATERIALS_GOLD).add(Items.RAW_GOLD);
-        tag(Tags.Items.RAW_MATERIALS_IRON, PortTags.Items.RAW_MATERIALS_IRON).add(Items.RAW_IRON);
+        tag(PortTags.Items.RAW_MATERIALS).addTags(PortTags.Items.RAW_MATERIALS_COPPER, PortTags.Items.RAW_MATERIALS_GOLD, PortTags.Items.RAW_MATERIALS_IRON);
+        tag(PortTags.Items.RAW_MATERIALS_COPPER).add(Items.RAW_COPPER);
+        tag(PortTags.Items.RAW_MATERIALS_GOLD).add(Items.RAW_GOLD);
+        tag(PortTags.Items.RAW_MATERIALS_IRON).add(Items.RAW_IRON);
 
         copy(PortTags.Blocks.ROPES, PortTags.Items.ROPES);
 
@@ -413,10 +413,5 @@ public class PortItemTagsProvider extends ItemTagsProvider {
                 Items.RABBIT,
                 Items.ROTTEN_FLESH
         );
-    }
-
-    protected IntrinsicTagAppender<Item> tag(TagKey<Item> forgeTag, TagKey<Item> commonTag) {
-        super.tag(forgeTag).addTag(commonTag);
-        return super.tag(commonTag);
     }
 }
