@@ -127,6 +127,8 @@
         "MusicManagerMixin",
         "RenderBuffersMixin",
         "RenderRegionCacheMixin",
+        "SpriteContentsMixin",
+        "SpriteLoaderMixin",
         "SpriteSourcesMixin",
         "TextureAtlasMixin",
         "TimerMixin"
