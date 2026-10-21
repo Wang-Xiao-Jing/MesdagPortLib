@@ -1,20 +1,22 @@
 package org.mesdag.portlib.client.gui.components;
 
+import net.minecraft.resources.ResourceLocation;
+
 public record PortWidgetSprites(
-        PortSprite enabled,
-        PortSprite disabled,
-        PortSprite enabledFocused,
-        PortSprite disabledFocused
+        ResourceLocation enabled,
+        ResourceLocation disabled,
+        ResourceLocation enabledFocused,
+        ResourceLocation disabledFocused
 ) {
-    public PortWidgetSprites(PortSprite normal, PortSprite highlighted) {
+    public PortWidgetSprites(ResourceLocation normal, ResourceLocation highlighted) {
         this(normal, normal, highlighted, highlighted);
     }
 
-    public PortWidgetSprites(PortSprite enabled, PortSprite disabled, PortSprite highlighted) {
+    public PortWidgetSprites(ResourceLocation enabled, ResourceLocation disabled, ResourceLocation highlighted) {
         this(enabled, disabled, highlighted, disabled);
     }
 
-    public PortSprite get(boolean enabled, boolean focused) {
+    public ResourceLocation get(boolean enabled, boolean focused) {
         if (enabled) {
             return focused ? enabledFocused : this.enabled;
         }

@@ -4,7 +4,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.resources.ResourceLocation;
-import org.mesdag.portlib.client.gui.components.PortSprite;
 import org.mesdag.portlib.client.gui.PortGuiMetadataSection;
 import org.mesdag.portlib.client.gui.PortGuiSpriteScaling;
 import org.mesdag.portlib.diff.PortModelManager;
@@ -13,26 +12,6 @@ import org.mesdag.portlib.diff.PortModelManager;
 public interface IPortGuiGraphicsExtension {
     private GuiGraphics self() {
         return (GuiGraphics) this;
-    }
-
-    default void blitSprite(PortSprite sprite, int textureWidth, int textureHeight, int uPosition, int vPosition, int x, int y, int uWidth, int vHeight) {
-        ResourceLocation id = sprite.spriteId();
-        if (id == null) {
-            self().blit(sprite.path(), x, y, uPosition, vPosition, uWidth, vHeight, textureWidth, textureHeight);
-            return;
-        }
-
-        blitSprite(id, textureWidth, textureHeight, uPosition, vPosition, x, y, uWidth, vHeight);
-    }
-
-    default void blitSprite(PortSprite sprite, int x, int y, int width, int height) {
-        ResourceLocation id = sprite.spriteId();
-        if (id == null) {
-            self().blit(sprite.path(), x, y, width, height, 0.0F, 0.0F, sprite.textureW(), sprite.textureH(), sprite.textureW(), sprite.textureH());
-            return;
-        }
-
-        blitSprite(id, x, y, width, height);
     }
 
     default void blitSprite(ResourceLocation sprite, int x, int y, int width, int height) {

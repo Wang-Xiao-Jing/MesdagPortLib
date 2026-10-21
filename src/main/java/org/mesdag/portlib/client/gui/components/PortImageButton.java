@@ -1,6 +1,7 @@
 package org.mesdag.portlib.client.gui.components;
 
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
@@ -20,7 +21,7 @@ public class PortImageButton extends Button {
 
     @Override
     protected void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        PortSprite sprite = sprites.get(isActive(), isHoveredOrFocused());
+        ResourceLocation sprite = sprites.get(isActive(), isHoveredOrFocused());
         IPortGuiGraphicsExtension.of(guiGraphics).blitSprite(sprite, getX(), getY(), getWidth(), getHeight());
     }
 }
